@@ -1,0 +1,30 @@
+{
+  "name": "proyecto-innovation-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Repositorio de Backend del proyecto de GenOvation Cabina IA",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --env-file .env index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/escalandres/proyecto-innovation-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/escalandres/proyecto-innovation-backend/issues"
+  },
+  "homepage": "https://github.com/escalandres/proyecto-innovation-backend#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "node-fetch": "^3.3.2",
+    "nodemon": "^3.1.9"
+  }
+}
