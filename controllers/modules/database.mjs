@@ -67,7 +67,23 @@ export async function db_registrarPrenda(item){
   
 }
 
+export async function db_obtenerPrendas() {
+  try {
+    const client = await connect()
+    const prendasCollection = client.collection('prendas');
 
+    const dbResult = await prendasCollection.find().toArray();
+    console.log("Prendas encontradas:", dbResult);
+    return { success: true, items: dbResult, error: "" };
+
+  } catch (error) {
+    console.error('Error al obtener las prendas: ', error);
+    return { success: false, items: [], error: error };
+
+  } finally {
+    disconnect();
+  }
+}
 
 
 
