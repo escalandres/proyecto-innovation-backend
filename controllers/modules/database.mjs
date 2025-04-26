@@ -28,7 +28,7 @@ async function disconnect() {
 
 // ---------------------------------------------------------------
 
-function getNextSequenceValue(sequenceName) {
+function getNextSequenceValue(db,sequenceName) {
   return db.collection('counters').findOneAndUpdate(
     { _id: sequenceName },
     { $inc: { seq: 1 } },
@@ -37,15 +37,20 @@ function getNextSequenceValue(sequenceName) {
 }
 
 export async function db_registrarPrenda(item){
-  const idPrenda = await getNextSequenceValue("id_prenda");
-  console.log("Nuevo ID:", result.value.seq);
+  console.log("Registrando prenda..............");
+  
   try {
     const client = await connect()
+
+    const result = await getNextSequenceValue(client,"id_prenda");
+    console.log("result", result);
+    console.log("Nuevo ID:", result.seq);
+
     const collection = client.collection('prendas');
 
     // Crear índices únicos en email y userId
     await collection.createIndex({ id: 1 }, { unique: true });
-    item.id = idPrenda;
+    item.id = result.seq;
     const dbResult = await collection.insertOne(item);
     if (dbResult.acknowledged) {
       return { success: true, result: "Prenda registrada!", error: "" };

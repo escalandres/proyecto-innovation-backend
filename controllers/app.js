@@ -3,6 +3,7 @@ import { db_registrarPrenda } from "./modules/database.mjs";
 export async function registrarPrenda(req, res){
     try {
         const { item } = req.body;
+        console.log('item:', item);
         const result = await db_registrarPrenda(item);
         if(!result.success){
             return res.status(400).json({success: false, message: result.error})
