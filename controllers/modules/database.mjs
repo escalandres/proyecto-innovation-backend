@@ -73,7 +73,7 @@ export async function db_obtenerPrendas() {
     const prendasCollection = client.collection('prendas');
 
     const dbResult = await prendasCollection.find().toArray();
-    console.log("Prendas encontradas:", dbResult);
+    // console.log("Prendas encontradas:", dbResult);
     return { success: true, items: dbResult, error: "" };
 
   } catch (error) {
